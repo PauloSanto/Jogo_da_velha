@@ -1,0 +1,78 @@
+body{
+    background-color:beige;
+    margin-top: 5px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#txtini{
+    font-size:25px ;
+    text-align: center;
+    color: red;
+}
+#s1{
+    display: inline-flex;
+    background-color: aqua;
+    width: 339px;
+    height: 45px;
+    border-radius: 15px;
+    margin: 10px 60px 10px 60px;
+    padding: 10px;
+}
+.lab{
+   color: blue;
+   font-size: 18px;
+}
+.rad{
+  margin-top: 10px;  
+  width: 25px;
+  height: 25px;
+}
+.sel{
+    font-size: 16 px;
+    color: blue;
+    font-weight: 600;
+    justify-content: center;
+    background-color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: inline-flex;
+    padding: 10px;
+    margin:  auto 5px;
+}
+.sel:hover{
+    background-color: rgba(0, 153, 255, 0.651);
+    border: 3px solid black;
+    cursor: pointer;
+    color:chartreuse
+}
+#s2{
+    background-color: aqua;
+    width: 339px;
+    height: 339px;
+    border-radius: 20px;
+    margin: 5px auto ;
+    padding: 10px;
+}
+.area{
+    font-size: 100px;
+    color: white;
+    font-weight: 800;
+    justify-content: center;
+    background-color: white;
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: inline-flex
+}
+.area:hover{
+    background-color: rgba(0, 153, 255, 0.938);
+    color: rgba(0, 153, 255, 0.596);;
+    border: 3px solid black;
+    cursor: pointer;
+}
+
+
+
+

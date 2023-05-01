@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="txtini"> <h1>Jogo da Velha</h1></div>
+    <section id="s1">
+        <div id="1p">
+            <input type="radio" name = "n_play" id="onep" class="rad" checked >
+            <label class="lab" for="onep">1 Player</label>
+        </div>
+        <div id="2p">
+            <input type="radio" name ="n_play" id="twop" class="rad" >
+            <label class="lab"for="twop">2 Players</label>
+        </div>
+        <input type="button" value="NEW GAME" id="nplay" class="sel" onclick="nplay()">
+    </section>
+    <section id="s2">
+        <input type="button" value="Z" id="pos1" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos2" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos3" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos4" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos5" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos6" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos7" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos8" class="area" onclick="marK(id)">
+        <input type="button" value="Z" id="pos9" class="area" onclick="marK(id)">
+     </section>
+    
+  
+    <script src="main.js"></script>
+</body>
+</html>
