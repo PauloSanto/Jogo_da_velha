@@ -1,28 +1,27 @@
 body{
     background-color:beige;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: auto;
 }
 #txtini{
     font-size:20px ;
     text-align: center;
     color: red;
 }
-
 #d1, #d2{
-
+    justify-content:right;
+    margin-right: 5px;
     background-color: aqua;
     width: 135px;
     height: 115px;
     border-radius: 15px;
-    margin: 1px 1px 1px 60px;
-   
 }
 #d2{
     width: 215px;
-    margin: 1px 1px 1px 3px;
 }
 #s1{
-    display: inline-flex
+    display: flex;
+    justify-content: center;
 }
 .lab{
    color: blue;
@@ -34,7 +33,7 @@ body{
   height: 25px;
 }
 .sel{
-    font-size: 16 px;
+    font-size: 16px;
     color: blue;
     font-weight: 600;
     background-color: white;
