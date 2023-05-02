@@ -1,6 +1,8 @@
 let st_game_1p = 0
 let st_game_2p = 0
-let jogo = {pos1,};
+let jogo = [{pos1},{pos2},{pos3},
+{pos4},{pos5},{pos6},
+{pos7},{pos8},{pos9}];
 
 
 function marK_s(){
@@ -9,11 +11,14 @@ function marK_s(){
         st_game_1p = 1
         window.alert('You chose 1 player. If you want to change choose new game. Start the game, you are "X" with color yelow. Good lock.')
         document.getElementById('2p').style.opacity = '0';
+       
+        
     }
     if(nplay[1].checked == 1){
         st_game_2p = 1
         window.alert('You chose 2 players. If you want to change choose new game. Start the game, you are "X" with color yelow. Good lock.')
-        document.getElementById('1p').style.opacity = '0';
+        document.getElementById('1p').style.display = none;
+      
     }
 }
 
@@ -31,7 +36,7 @@ function marK_s(){
             mark1.style.color = "red";
             mark1.style.backgroundColor = 'yellow';
             mark1.style.border = none;
-            matriz(mark1.id, mark1.value);
+          
         }
     
         if(st_game_2p == 0 && st_game_1p == 0){

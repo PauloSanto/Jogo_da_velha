@@ -8,18 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="txtini"> <h1>Jogo da Velha</h1></div>
+    <div id="txtini"><h1>Jogo da Velha</h1></div>
+    
+  
     <section id="s1">
-        <div id="1p">
-            <input type="radio" name = "n_play" id="onep" class="rad" checked >
-            <label class="lab" for="onep">1 Player</label>
-        </div>
-        <div id="2p">
-            <input type="radio" name ="n_play" id="twop" class="rad" >
-            <label class="lab"for="twop">2 Players</label>
-        </div>
-        <input type="button" value="NEW GAME" id="nplay" class="sel" onclick="nplay()">
-    </section>
+      
+            <div id="d1">
+                <input type="radio" name = "n_play" id="onep" class="rad" checked >
+                <label class="lab" for="onep">1 Player</label>
+                <input type="radio" name ="n_play" id="twop" class="rad" >
+                <label class="lab"for="twop">2 Players</label>
+            </div>
+  
+            <div id="d2" >
+                <input type="button" value="NEW GAME" id="ng" class="sel" onclick="ng()">
+                <input type="button" value="START GAME" id="stg" class="sel" onclick="stg()">
+            </div>
+    </section>   
+       
+
     <section id="s2">
         <input type="button" value="Z" id="pos1" class="area" onclick="marK(id)">
         <input type="button" value="Z" id="pos2" class="area" onclick="marK(id)">
