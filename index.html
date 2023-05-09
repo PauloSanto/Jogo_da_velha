@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <div class="overlay" id="overlay" hidden>
+        <div class="confirm-box">
+          <div onclick="closeConfirmBox()" class="close">&#10006;</div>
+          <h2>Let's go</h2>
+          <p>Would you like to start playing first?</p>
+          <button onclick="isConfirm(true)">Yes</button>
+          <button onclick="isConfirm(false)">No</button>
+        </div>
+      </div>
+     
+
     <div id="txtini">
          <p id="txt1"></p>
          <p id="txt2">Jogo da Velha</p>

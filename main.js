@@ -2,6 +2,9 @@ let cont = 0
 let twop = 0
 let onep = 0
 let winn = 0
+let arpos = []
+let pos = {}
+
 function stg(){
     let nplay = document.getElementsByName('n_play')
     if(nplay[0].checked == 1){
@@ -10,6 +13,7 @@ function stg(){
         document.getElementById('2plab').style.opacity = '0';
         qplay('X')
         onep = 1
+        showConfirmBox()
     }
     if(nplay[1].checked == 1){
         window.alert('You chose 2 players. If you want to change choose new game. Start the game, you are "X" with color yelow. Good lock.')
@@ -18,6 +22,23 @@ function stg(){
         qplay('X')
         twop = 1
     }
+}
+
+function showConfirmBox() {
+    document.getElementById("overlay").hidden = false;
+  }
+  function closeConfirmBox() {
+    document.getElementById("overlay").hidden = true;
+  }
+
+  function isConfirm(answer) {
+    if (answer) {
+      //alert("Answer is yes");
+      monplayer1()
+    } else {
+      alert("Answer is no");
+    }
+    closeConfirmBox();
 }
 
 function qplay(np){
@@ -35,9 +56,7 @@ function qplay(np){
 
     function marK(id){
         let mark1 = document.getElementById(id);
-        if((cont < 9) && (twop == 1)) {
-          
-            
+        if((cont < 9) && (twop == 1)) {                     //2p
             if((cont % 2 == 0) && (mark1.value == 'Z')){
                 qplay('0')
                 mark1.value = 'X';
@@ -46,7 +65,6 @@ function qplay(np){
                 mark1.style.border = 'none';
                 cont += 1;
             } 
-
             if((cont % 2 != 0) && (mark1.value == 'Z')){
                 qplay('X')
                 mark1.value = '0';
@@ -55,63 +73,67 @@ function qplay(np){
                 mark1.style.border = 'none';
                 cont += 1;
             }  
-            if(cont >= 4) {testwin() }     
-        }   else if((cont < 9) && (onep == 1)) {
-           
-            
-            if((cont % 2 == 0) && (mark1.value == 'Z')){
-                qplay('0')
-                mark1.value = 'X';
-                mark1.style.color = "red";
-                mark1.style.backgroundColor = 'yellow';
-                mark1.style.border = 'none';
-                cont += 1;
-            } 
-
-            if((cont % 2 != 0) && (mark1.value == 'Z')){
-                qplay('X')
-                mark1.value = '0';
-                mark1.style.color = "red";
-                mark1.style.backgroundColor = 'green';
-                mark1.style.border = 'none';
-                cont += 1;
-            }  
-            if(cont >= 4) {testwin() }     
-        }else if((cont < 9) && (winn == 0)){
+           testwin() 
+        }   else if((cont < 9) && (onep == 1)) {            //1p
+                if((cont % 2 == 0) && (mark1.value == 'Z')){
+                    qplay('0')
+                    mark1.value = 'X';
+                    mark1.style.color = "red";
+                    mark1.style.backgroundColor = 'yellow';
+                    mark1.style.border = 'none';
+                    cont += 1;
+                } 
+                if((cont % 2 != 0) && (mark1.value == 'Z')){
+                    qplay('X')
+                    mark1.value = '0';
+                    mark1.style.color = "red";
+                    mark1.style.backgroundColor = 'green';
+                    mark1.style.border = 'none';
+                    cont += 1;
+                }  
+                testwin()    
+            } else if((cont < 9) && (winn == 0)){
             window.alert('click ON Start Game')
-        }
+            }
         if(cont == 9){ tie()}      
     }
 
+    function monplayer1(){
+        if(arpos.filter (x => x =='X').length == 1) { win('X', 1, 2, 3)}
+       
+    }
+
+    function playertwo(){
+
+    }
+
 function testwin(){
+    for(let i = 1; i < 10; i++){
+        arpos[i] = document.getElementById(['pos'+i]).value
+        
+    }
+
+    if([arpos[1], arpos[2], arpos[3]].filter (x => x =='X').length == 3) { win('X', 1, 2, 3)}
+    if([arpos[4], arpos[5], arpos[6]].filter (x => x =='X').length == 3) { win('X', 4, 5, 6)}
+    if([arpos[7], arpos[8], arpos[9]].filter (x => x =='X').length == 3) { win('X', 7, 8, 9)}
+    if([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 3) { win('X', 1, 4, 7)}
+    if([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 3) { win('X', 2, 5, 8)}
+    if([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 3) { win('X', 3, 6, 9)}
+    if([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 3) { win('X', 1, 5, 9)}
+    if([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 3) { win('X', 3, 5, 7)}
     
-    let pos1 = document.getElementById('pos1')
-    let pos2 = document.getElementById('pos2')
-    let pos3 = document.getElementById('pos3')
-    let pos4 = document.getElementById('pos4')
-    let pos5 = document.getElementById('pos5')
-    let pos6 = document.getElementById('pos6')
-    let pos7 = document.getElementById('pos7')
-    let pos8 = document.getElementById('pos8')
-    let pos9 = document.getElementById('pos9')
+    if([arpos[1], arpos[2], arpos[3]].filter (x => x =='0').length == 3) { win('0', 1, 2, 3)}
+    if([arpos[4], arpos[5], arpos[6]].filter (x => x =='0').length == 3) { win('0', 4, 5, 6)}
+    if([arpos[7], arpos[8], arpos[9]].filter (x => x =='0').length == 3) { win('0', 7, 8, 9)}
+    if([arpos[1], arpos[4], arpos[7]].filter (x => x =='0').length == 3) { win('0', 1, 4, 7)}
+    if([arpos[2], arpos[5], arpos[8]].filter (x => x =='0').length == 3) { win('0', 2, 5, 8)}
+    if([arpos[3], arpos[6], arpos[9]].filter (x => x =='0').length == 3) { win('0', 3, 6, 9)}
+    if([arpos[1], arpos[5], arpos[9]].filter (x => x =='0').length == 3) { win('0', 1, 5, 9)}
+    if([arpos[3], arpos[5], arpos[7]].filter (x => x =='0').length == 3) { win('0', 3, 5, 7)}
+    
 
-    if((pos1.value == 'X') && (pos2.value == 'X') && (pos3.value == 'X')) { win('X', 1, 2, 3)}
-    if((pos4.value == 'X') && (pos5.value == 'X') && (pos6.value == 'X')) { win('X', 4, 5, 6)}
-    if((pos7.value == 'X') && (pos8.value == 'X') && (pos9.value == 'X')) { win('X', 7, 8, 9)}
-    if((pos1.value == 'X') && (pos4.value == 'X') && (pos7.value == 'X')) { win('X', 1, 4, 7)}
-    if((pos2.value == 'X') && (pos5.value == 'X') && (pos8.value == 'X')) { win('X', 2, 5, 8)}
-    if((pos3.value == 'X') && (pos6.value == 'X') && (pos9.value == 'X')) { win('X', 3, 6, 9)}
-    if((pos1.value == 'X') && (pos5.value == 'X') && (pos9.value == 'X')) { win('X', 1, 5, 9)}
-    if((pos3.value == 'X') && (pos5.value == 'X') && (pos7.value == 'X')) { win('X', 3, 5, 7)}
-
-    if((pos1.value == '0') && (pos2.value == '0') && (pos3.value == '0')) { win('0', 1, 2, 3)}
-    if((pos4.value == '0') && (pos5.value == '0') && (pos6.value == '0')) { win('0', 4, 5, 6)}
-    if((pos7.value == '0') && (pos8.value == '0') && (pos9.value == '0')) { win('0', 7, 8, 9)}
-    if((pos1.value == '0') && (pos4.value == '0') && (pos7.value == '0')) { win('0', 1, 4, 7)}
-    if((pos2.value == '0') && (pos5.value == '0') && (pos8.value == '0')) { win('0', 2, 5, 8)}
-    if((pos3.value == '0') && (pos6.value == '0') && (pos9.value == '0')) { win('0', 3, 6, 9)}
-    if((pos1.value == '0') && (pos5.value == '0') && (pos9.value == '0')) { win('0', 1, 5, 9)}
-    if((pos3.value == '0') && (pos5.value == '0') && (pos7.value == '0')) { win('0', 3, 5, 7)}
+  
+    
 }
 
 function win(w, n1, n2, n3){
@@ -140,54 +162,33 @@ function tie(){
 function ng(){
     window.location.reload();
 }
-
-
-
-
-
-
-
-
 /*
-if(np == 1) { 
+    if([pos.pos1, pos.pos2, pos.pos3].filter(x => x=='X').length == 3) { win('X', 1, 2, 3)}
+    arpos[i] = document.getElementById(['pos'+i]).value
+
+    pos.pos1 = document.getElementById('pos1').value
+    pos.pos2 = document.getElementById('pos2').value
+    pos.pos3 = document.getElementById('pos3').value
+    pos.pos4 = document.getElementById('pos4').value
+    pos.pos5 = document.getElementById('pos5').value
+    pos.pos6 = document.getElementById('pos6').value
+    pos.pos7 = document.getElementById('pos7').value
+    pos.pos8 = document.getElementById('pos8').value
+    pos.pos9 = document.getElementById('pos9').value
     
-     
-document.getElementById('txt1').style.backgroundColor="green"
-    document.getElementById('txt1').innerText="0"}
     
-    let st_game_1p = 0
-let st_game_2p = 0
-let jogo = [{pos1},{pos2},{pos3},
-{pos4},{pos5},{pos6},
-{pos7},{pos8},{pos9}];
-
-
-
-
-
-  
-    
-        if(st_game_2p == 0 && st_game_1p == 0){
-            marK_s()
-        } else {
-            mark1.value = 'X';
-            mark1.style.color = "red";
-            mark1.style.backgroundColor = 'yellow';
-            mark1.style.border = none;
-            matriz(mark1.id, mark1.value);
-        }
-    }
-    
-    function matriz(pos, mark){
-        if(pos == 'pos1') { l1[0] = mark; c1[0] = mark; }
-        if(pos == 'pos2') { l1[1] = mark; c2[1] = mark; }
-        if(pos == 'pos3') { l1[2] = mark; c3[2] = mark; }
-        if(pos == 'pos4') { l2[0] = mark; c1[0] = mark; }
-        if(pos == 'pos5') { l2[0] = mark; c2[0] = mark; }
-        if(pos == 'pos6') { l2[0] = mark; c3[0] = mark; }
-        if(pos == 'pos7') { l3[0] = mark; c1[0] = mark; }
-        if(pos == 'pos8') { l3[0] = mark; c2[0] = mark; }
-        if(pos == 'pos9') { l3[0] = mark; c3[0] = mark; }
-        
-    }
-    */
+// IA game
+function pos(){
+    let ar1 = [ pos.pos1, pos.pos2, pos.pos3 ]
+    let ar2 = [ pos.pos4, pos.pos5, pos.pos6 ]
+    let ar3 = [ pos.pos7, pos.pos8, pos.pos9 ]
+    let ar4 = [ pos.pos1, pos.pos4, pos.pos7 ]
+    let ar5 = [ pos.pos2, pos.pos5, pos.pos8 ]
+    let ar6 = [ pos.pos3, pos.pos6, pos.pos9 ]
+    let ar7 = [ pos.pos1, pos.pos5, pos.pos9 ]
+    let ar8 = [ pos.pos3, pos.pos5, pos.pos7 ] 
+    ar1.count('X')
+    ar1.filter(x => x=='X').length
+   if( [pos.pos1, pos.pos2, pos.pos3].filter(x => x=='X').length == 3) { win('X', 1, 2, 3)}
+}
+*/
