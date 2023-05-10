@@ -33,10 +33,11 @@ function showConfirmBox() {
 
   function isConfirm(answer) {
     if (answer) {
-      alert("Answer is yes");
+      //alert("Answer is yes");
      
     } else {
-      alert("Answer is no");
+      //alert("Answer is no");
+      playertwo()
     }
     closeConfirmBox();
 }
@@ -88,8 +89,21 @@ function marK(id){
 }
 
 function playertwo(){
-        let mark2 = document.getElementById('pos'+ randomInteger()); // first move
-        if(cont == 1){
+        let mark2 = document.getElementById('pos'+ randomInteger()); 
+        if(cont == 0){                          // first move init game
+            if (mark2.value == "Z") {
+                qplay('X')
+                mark2.value = '0';
+                mark2.style.backgroundColor = 'green';
+                mark2.style.color = "red";
+                mark2.style.border = 'none';
+                cont += 1;  
+                testwin()
+                return;
+            }   else{ playertwo()}
+        }
+
+        if(cont == 1){                          // first move
             if (mark2.value == "Z") {
                 qplay('X')
                 mark2.value = '0';
