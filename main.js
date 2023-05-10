@@ -33,8 +33,8 @@ function showConfirmBox() {
 
   function isConfirm(answer) {
     if (answer) {
-      //alert("Answer is yes");
-      monplayer1()
+      alert("Answer is yes");
+     
     } else {
       alert("Answer is no");
     }
@@ -54,58 +54,73 @@ function qplay(np){
    document.getElementById('txt2').innerText="Sua vez de jogar"
 }
 
-    function marK(id){
-        let mark1 = document.getElementById(id);
-        if((cont < 9) && (twop == 1)) {                     //2p
-            if((cont % 2 == 0) && (mark1.value == 'Z')){
+function marK(id){
+    let mark1 = document.getElementById(id);
+    if((cont < 9) && (twop == 1)) {                     //2p
+        if((cont % 2 == 0) && (mark1.value == 'Z')){
+            qplay('0')
+                mark1.value = 'X';
+                mark1.style.backgroundColor = 'yellow';
+        } else {
+                qplay('X')
+                mark1.value = '0';
+                mark1.style.backgroundColor = 'green';
+            }
+                mark1.style.color = "red";
+                mark1.style.border = 'none';
+                cont += 1;  
+                testwin() 
+    }   else if((cont < 9) && (onep == 1)) {            //1p start "X"
+            if(mark1.value == 'Z'){
                 qplay('0')
                 mark1.value = 'X';
                 mark1.style.color = "red";
                 mark1.style.backgroundColor = 'yellow';
                 mark1.style.border = 'none';
                 cont += 1;
+                testwin() 
+                playertwo()
             } 
-            if((cont % 2 != 0) && (mark1.value == 'Z')){
-                qplay('X')
-                mark1.value = '0';
-                mark1.style.color = "red";
-                mark1.style.backgroundColor = 'green';
-                mark1.style.border = 'none';
-                cont += 1;
-            }  
-           testwin() 
-        }   else if((cont < 9) && (onep == 1)) {            //1p
-                if((cont % 2 == 0) && (mark1.value == 'Z')){
-                    qplay('0')
-                    mark1.value = 'X';
-                    mark1.style.color = "red";
-                    mark1.style.backgroundColor = 'yellow';
-                    mark1.style.border = 'none';
-                    cont += 1;
-                } 
-                if((cont % 2 != 0) && (mark1.value == 'Z')){
-                    qplay('X')
-                    mark1.value = '0';
-                    mark1.style.color = "red";
-                    mark1.style.backgroundColor = 'green';
-                    mark1.style.border = 'none';
-                    cont += 1;
-                }  
-                testwin()    
-            } else if((cont < 9) && (winn == 0)){
+    } else if((cont < 9) && (winn == 0)){
             window.alert('click ON Start Game')
             }
-        if(cont == 9){ tie()}      
-    }
+    if((cont == 9) && (winn == 0)){ tie()}      
+}
 
-    function monplayer1(){
-        if(arpos.filter (x => x =='X').length == 1) { win('X', 1, 2, 3)}
-       
-    }
+function playertwo(){
+        let mark2 = document.getElementById('pos'+ randomInteger()); // first move
+        if(cont == 1){
+            if (mark2.value == "Z") {
+                qplay('X')
+                mark2.value = '0';
+                mark2.style.backgroundColor = 'green';
+                mark2.style.color = "red";
+                mark2.style.border = 'none';
+                cont += 1;  
+                testwin()
+                return;
+            }   else{ playertwo()}
+        }   
 
-    function playertwo(){
-
-    }
+        if((cont > 1) && (cont < 9) && (winn == 0)){
+            if (mark2.value == "Z") {
+                qplay('X');
+                mark2.value = '0';
+                mark2.style.backgroundColor = 'green';
+                mark2.style.color = "red";
+                mark2.style.border = 'none';
+                cont += 1;  
+                testwin()
+                return;
+            }   else{ playertwo()}
+        }   
+}
+    
+        //if(arpos.filter (x => x =='X').length == 1) { win('X', 1, 2, 3)}
+    
+function randomInteger() {
+        return Math.floor(Math.random() * 9) + 1;
+}
 
 function testwin(){
     for(let i = 1; i < 10; i++){
@@ -163,6 +178,19 @@ function ng(){
     window.location.reload();
 }
 /*
+      if((cont % 2 != 0) && (mark1.value == 'Z')){
+                    qplay('X')
+                    mark1.value = '0';
+                    mark1.style.color = "red";
+                    mark1.style.backgroundColor = 'green';
+                    mark1.style.border = 'none';
+                    cont += 1;
+                }
+                mark1.style.color = "red";
+                mark1.style.border = 'none';
+                cont += 1;  
+                testwin()
+
     if([pos.pos1, pos.pos2, pos.pos3].filter(x => x=='X').length == 3) { win('X', 1, 2, 3)}
     arpos[i] = document.getElementById(['pos'+i]).value
 
