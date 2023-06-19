@@ -2,6 +2,12 @@ body{
     background-color:beige;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin: auto;
+    width: auto;
+    height: auto;
+}
+.container{
+    width: auto;
+    height: 900px;
 }
 .overlay {
     position: absolute;
