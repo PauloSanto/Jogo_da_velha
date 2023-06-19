@@ -5,7 +5,7 @@ let winn = 0        // winner
 let arpos = []      // posicional array
 let stpc = 0        // start personal computer
 let st1p = 0        // start 1 player
-let Xor0 = 0        // X or 0
+let test = 0        // test
 
 function stg(){             //start game
     let nplay = document.getElementsByName('n_play')  // nbumber players
@@ -41,8 +41,10 @@ function showConfirmBox() {     //overlay box
     } else {
       //alert("Answer is no");
       stpc = 1          // start game personal computer
+      playertwo()
     }
     closeConfirmBox();
+    
 }
 
 function qplay(np){         //notice who play
@@ -50,18 +52,20 @@ function qplay(np){         //notice who play
     if( np == 'X'){ 
         txt1.innerText="X"
         txt1.style.backgroundColor='yellow'
-        Xor0 = 0        // turn X
+             // turn X
     }
     if( np == '0'){
         txt1.innerText="0"
         txt1.style.backgroundColor='green'
-        Xor0 = 1        // turn 0
+              // turn 0
     }
    document.getElementById('txt2').innerText="Sua vez de jogar"
 }
 
 function marK(id){          // html => mark
+    
     let mark1 = document.getElementById(id);
+    
     if((cont < 9) && (twop == 1)) {                     // 2 players
         if((cont % 2 == 0) && (mark1.value == 'Z')){
             qplay('0')
@@ -76,7 +80,7 @@ function marK(id){          // html => mark
                 mark1.style.border = 'none';
                 cont += 1;  
                 loadarr() 
-    }   else if((cont < 9) && (onep == 1)) {            // 1 player start "X"
+    }   else if((cont < 9) && (onep == 1)&& (st1p = 1)) {     // 1 player start "X"
             if(mark1.value == 'Z'){
                 qplay('0')
                 mark1.value = 'X';
@@ -86,22 +90,25 @@ function marK(id){          // html => mark
                 cont += 1;
                 loadarr() 
                 cond()
-                test()
+                test_pos()
             } 
-    }  else if((cont < 9) && (winn == 0)){          // notice about game
-        window.alert('click ON Start Game')
+                       
+        } else if((cont < 9) && (winn == 0)){          // notice about game
+            window.alert('click ON Start Game')
     }
     cond() 
 }
+
 function cond(){            // conditionals
     //if((cont > 3) && (onep == 1))  { test()}  // start X check position
     if(cont > 4) {testwin()}                  // test if exist winner   
     if((cont == 9) && (winn == 0)){ tie()}    // test final play
-
 }
 
 function playertwo(){
-        let mark2 = document.getElementById('pos'+ randomInteger()); 
+        let rand = randomInteger()
+        let mark2 = document.getElementById('pos' + rand)
+       
         if ((onep == 1) && (winn == 0)){                     // first move start pc
             if (mark2.value == "Z") {
                 qplay('X')
@@ -109,16 +116,14 @@ function playertwo(){
                 mark2.style.backgroundColor = 'green';
                 mark2.style.color = "red";
                 mark2.style.border = 'none';
-                cont += 1;  
+                cont += 1; 
                 loadarr()
+                test = 1;
                 return;
             }   else{ playertwo()}
         }
-  
 }
-    
-        //if(arpos.filter (x => x =='X').length == 1) { win('X', 1, 2, 3)}
-    
+       
 function randomInteger() {
         return Math.floor(Math.random() * 9) + 1;
 }
@@ -126,7 +131,7 @@ function randomInteger() {
 function loadarr(){
     for(let i = 1; i < 10; i++){
     arpos[i] = document.getElementById('pos' + i).value
-}
+    }
 }
 function testwin(){
     loadarr()
@@ -150,43 +155,52 @@ function testwin(){
     if([arpos[3], arpos[5], arpos[7]].filter (x => x =='0').length == 3) { win('0', 3, 5, 7)}
 }
 
-function test(){
+function test_pos(){
     
     if (winn == 0){
-        if(([arpos[1], arpos[2], arpos[3]].filter (x => x =='0').length == 2)
-        && (Xor0 == 1)) { movpc('0', 1, 2, 3)}
-        if(([arpos[4], arpos[5], arpos[6]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 4, 5, 6)}
-        if(([arpos[7], arpos[8], arpos[9]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 7, 8, 9)}
-        if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 1, 4, 7)}
-        if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 2, 5, 8)}
-        if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 3, 6, 9)}
-        if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 1, 5, 9)}
-        if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='0').length == 2)
-            && (Xor0 == 1)) { movpc('0', 3, 5, 7)}
+        if(stpc == 1){
+            
+            if((arpos.slice(1,4).filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('0', 1, 2, 3)}
+            if(( arpos.slice(4,7).filter (x => x =='X').length == 2)&&(test==0)  
+            ) { test = movpc('0', 4, 5, 6)}
+            if(( arpos.slice(7,10).filter (x => x =='X').length == 2)&&(test==0) 
+            ){ test = movpc('0', 7, 8, 9)}
+            if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('0', 1, 4, 7)}
+            if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('0', 2, 5, 8)}
+            if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('0', 3, 6, 9)}
+            if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('0', 1, 5, 9)}
+            if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('0', 3, 5, 7)}
 
-        if((arpos.slice(1,4).filter (x => x =='X').length == 2) 
-           && (Xor0 == 1)) { movpc('X', 1, 2, 3)}
-        if(( arpos.slice(4,7).filter (x => x =='X').length == 2) 
-           && (Xor0 == 1)) { movpc('X', 4, 5, 6)}
-        if(( arpos.slice(7,10).filter (x => x =='X').length == 2)
-           && (Xor0 == 1)){ movpc('X', 7, 8, 9)}
-        if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)
-           && (Xor0 == 1)) { movpc('X', 1, 4, 7)}
-        if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2) 
-           && (Xor0 == 1)){ movpc('X', 2, 5, 8)}
-        if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2) 
-           && (Xor0 == 1)){ movpc('X', 3, 6, 9)}
-        if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)
-            && (Xor0 == 1)) { movpc('X', 1, 5, 9)}
-        if([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2) { movpc('X', 3, 5, 7)}
-    
-        if( Xor0 == 1) { playertwo()}
+            if(test == 0) { playertwo()}    
+        }
+        if(st1p == 1){
+            test = 0
+            if((arpos.slice(1,4).filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('X', 1, 2, 3)}
+            if(( arpos.slice(4,7).filter (x => x =='X').length == 2)&&(test==0)  
+            ) { test = movpc('X', 4, 5, 6)}
+            if(( arpos.slice(7,10).filter (x => x =='X').length == 2)&&(test==0) 
+            ){ test = movpc('X', 7, 8, 9)}
+            if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('X', 1, 4, 7)}
+            if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('X', 2, 5, 8)}
+            if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('X', 3, 6, 9)}
+            if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('X', 1, 5, 9)}
+            if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('X', 3, 5, 7)}
+
+            if(test == 0) {playertwo()}
+        }
+      
         cond()
     }
 }
@@ -215,47 +229,47 @@ function win_img(){
 
 function movpc(w, n1, n2, n3){
     loadarr()
-    if((w == '0') && (winn == 0) && (Xor0 == 0)){
+    if((w == '0') && (winn == 0)){
         if(arpos[n1] == 'Z') {
                 let mark3 = document.getElementById('pos'+ n1) 
                 qplay('X')
-                mark3.value = '0';
+                mark3.value = 'X';
                 mark3.style.backgroundColor = 'green';
                 mark3.style.color = "red";
                 mark3.style.border = 'none';
                 loadarr()
                 cont += 1;  
-                Xor0 = 0
+                return(1);
+                
              
             } 
         if(arpos[n2] == 'Z') {
                 let mark3 = document.getElementById('pos'+ n2) 
                 qplay('X')
-                mark3.value = '0';
+                mark3.value = 'X';
                 mark3.style.backgroundColor = 'green';
                 mark3.style.color = "red";
                 mark3.style.border = 'none';
                 loadarr()
-                cont += 1;  
-                Xor0 = 0
+                return(1);
                
             } 
         if(arpos[n3] == 'Z') { 
                 let mark3 = document.getElementById('pos'+ n3) 
                 qplay('X')
-                mark3.value = '0';
+                mark3.value = 'X';
                 mark3.style.backgroundColor = 'green';
                 mark3.style.color = "red";
                 mark3.style.border = 'none';
                 loadarr()
                 cont += 1;  
-                Xor0 = 0
+                return(1);
                
         } 
-        
+        return(0);
     }
 
-    if((w == 'X') && (winn == 0) && (Xor0 == 0)){
+    if((w == 'X') && (winn == 0)){
         if(arpos[n1] == 'Z') {
                 let mark3 = document.getElementById('pos'+ n1) 
                 qplay('X')
@@ -265,8 +279,7 @@ function movpc(w, n1, n2, n3){
                 mark3.style.border = 'none';
                 loadarr()
                 cont += 1;  
-                Xor0 = 0
-               
+                return(1);
             } 
         if(arpos[n2] == 'Z') {
                 let mark3 = document.getElementById('pos'+ n2) 
@@ -277,8 +290,7 @@ function movpc(w, n1, n2, n3){
                 mark3.style.border = 'none';
                 loadarr()
                 cont += 1;  
-                Xor0 = 0
-               
+                return(1);
             } 
         if(arpos[n3] == 'Z') { 
                 let mark3 = document.getElementById('pos'+ n3) 
@@ -289,59 +301,19 @@ function movpc(w, n1, n2, n3){
                 mark3.style.border = 'none';
                 loadarr()
                 cont += 1;  
-                Xor0 = 0
-               
-        } 
-        
+                return(1);
+          } 
+        return(0);
     }
-  
-      
-
-
 }
 
 function tie(){
     document.getElementById('txt1').innerText = ""
     document.getElementById('txt2').innerText="EMPATOU!!!"
     document.getElementById('txt2').style.fontSize = '50px'
+    document.getElementById("container").style.backgroundColor ="yellow"
 }
 
 function ng(){
     window.location.reload();
 }
-
-/*
-IA game defense
-   
-
-    if([arpos[1], arpos[2], arpos[3]].filter (x => x =='X').length == 2) { defense()}
-    if([arpos[4], arpos[5], arpos[6]].filter (x => x =='X').length == 2) { win('X', 4, 5, 6)}
-    if([arpos[7], arpos[8], arpos[9]].filter (x => x =='X').length == 2) { win('X', 7, 8, 9)}
-    if([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2) { win('X', 1, 4, 7)}
-    if([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2) { win('X', 2, 5, 8)}
-    if([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2) { win('X', 3, 6, 9)}
-    if([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2) { win('X', 1, 5, 9)}
-    if([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2) { win('X', 3, 5, 7)}
-
-
-
-        if((cont == 1) && (st1p == 1) && (onep == 1)){                          // first move start 1p
-            if (mark2.value == "Z") {
-                qplay('X')
-                mark2.value = '0';
-                mark2.style.backgroundColor = 'green';
-                mark2.style.color = "red";
-                mark2.style.border = 'none';
-                cont += 1;  
-                loadarr()
-                return;
-            }   else{ playertwo()}
-        }   
-
-        if((cont > 1) && (cont < 9) && (winn == 0) && (onep == 1) && (Xor0 == 1)){
-            
-               
-                test()
-          
-        } 
-*/
