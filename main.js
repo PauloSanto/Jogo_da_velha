@@ -6,10 +6,12 @@ let arpos = []      // posicional array
 let stpc = 0        // start personal computer
 let st1p = 0        // start 1 player
 let test = 0        // test
-const isDarkTheme = window. matchMedia("(prefers-color-scheme: dark)"). matches; 
+const isDarkTheme1 = window. matchMedia("(prefers-color-scheme: dark)"). matches; 
+const bodyBgColor = window.getComputedStyle(document.body).getPropertyValue('background-color');
+const isDarkTheme2 = bodyBgColor === 'rgb(0, 0, 0)';
 let x = document.getElementById("s2").getElementsByClassName("area")
 
-if(isDarkTheme){
+if(isDarkTheme1 || isDarkTheme2){
     for (let i = 0; i < x.length; i++) {
         x[i].style.color='black';
         x[i].style.backgroundColor ='black';
