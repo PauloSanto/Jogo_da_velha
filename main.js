@@ -6,17 +6,10 @@ let arpos = []      // posicional array
 let stpc = 0        // start personal computer
 let st1p = 0        // start 1 player
 let test = 0        // test
-let dark = 0
-const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
-let x = document.getElementById("s2").getElementsByClassName("area");
+const isDarkTheme = window. matchMedia("(prefers-color-scheme: dark)"). matches; 
+let x = document.getElementById("s2").getElementsByClassName("area")
 
-function changeTheme(event) {   // Altera o tema
-    if( event.matches ) {
-    dark = 1                      // O tema é o dark
-    } 
-  }
-
-if(dark == 1){
+if(isDarkTheme){
     for (let i = 0; i < x.length; i++) {
         x[i].style.color='black';
         x[i].style.backgroundColor ='black';
