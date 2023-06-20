@@ -69,10 +69,10 @@ function marK(id){          // html => mark
     let mark1 = document.getElementById(id);
     
     if((cont < 9) && (twop == 1)) {                     // 2 players
-        if((cont % 2 == 0) && (mark1.value == 'Z')){
+        if((cont % 2 == 0) && (mark1.value != "X" && "0") ) {
             qplay('0')
                 mark1.value = 'X';
-                mark1.style.backgroundColor = 'yellow';
+                mark1.style.backgroundColor = 'gold';
         } else {
                 qplay('X')
                 mark1.value = '0';
@@ -83,7 +83,7 @@ function marK(id){          // html => mark
                 cont += 1;  
                 loadarr() 
     }   else if((cont < 9) && (onep == 1)&& (st1p = 1)) {     // 1 player start "X"
-            if(mark1.value == 'Z'){
+            if(mark1.value != "X" && "0"){
                 qplay('0')
                 mark1.value = 'X';
                 mark1.style.color = "red";
@@ -110,9 +110,9 @@ function cond(){            // conditionals
 function playertwo(){
         let rand = randomInteger()
         let mark2 = document.getElementById('pos' + rand)
-       
+        
         if ((onep == 1) && (winn == 0)){                     // first move start pc
-            if (mark2.value == "Z") {
+            if ((mark2.value != "X") && (mark2.value != "0")) {
                 qplay('X')
                 mark2.value = '0';
                 mark2.style.backgroundColor = 'green';
@@ -253,7 +253,7 @@ function win(w, n1, n2, n3){
     let posC = 'pos' + n3
     let txt1 = document.getElementById('txt1')
     txt1.innerText = w
-    if(w == 'X'){  txt1.style.backgroundColor='yellow'}
+    if(w == 'X'){  txt1.style.backgroundColor='gold'}
     if(w == '0'){  txt1.style.backgroundColor='green'}   
     document.getElementById('txt2').innerHTML="VOCE VENCEU!!!"
     document.getElementById(posA).style.border = '6px solid black'
@@ -273,7 +273,7 @@ function win_img(){
 function movpc(w, n1, n2, n3){
     loadarr()
     if((w == '0') && (winn == 0)){
-        if(arpos[n1] == 'Z') {
+        if((arpos[n1] != "X") && (arpos[n1] != "0")) {
                 let mark3 = document.getElementById('pos'+ n1) 
                 qplay('X')
                 mark3.value = 'X';
@@ -286,7 +286,7 @@ function movpc(w, n1, n2, n3){
                 
              
             } 
-        if(arpos[n2] == 'Z') {
+        if((arpos[n2] != "X") && (arpos[n2] != "0")) {
                 let mark3 = document.getElementById('pos'+ n2) 
                 qplay('X')
                 mark3.value = 'X';
@@ -297,7 +297,7 @@ function movpc(w, n1, n2, n3){
                 return(1);
                
             } 
-        if(arpos[n3] == 'Z') { 
+        if((arpos[n3] != "X") && (arpos[n3] != "0")) { 
                 let mark3 = document.getElementById('pos'+ n3) 
                 qplay('X')
                 mark3.value = 'X';
@@ -313,7 +313,7 @@ function movpc(w, n1, n2, n3){
     }
 
     if((w == 'X') && (winn == 0)){
-        if(arpos[n1] == 'Z') {
+        if((arpos[n1] != "X") && (arpos[n1] != "0")) {
                 let mark3 = document.getElementById('pos'+ n1) 
                 qplay('X')
                 mark3.value = '0';
@@ -324,7 +324,7 @@ function movpc(w, n1, n2, n3){
                 cont += 1;  
                 return(1);
             } 
-        if(arpos[n2] == 'Z') {
+        if((arpos[n2] != "X") && (arpos[n2] != "0")) {
                 let mark3 = document.getElementById('pos'+ n2) 
                 qplay('X')
                 mark3.value = '0';
@@ -335,7 +335,7 @@ function movpc(w, n1, n2, n3){
                 cont += 1;  
                 return(1);
             } 
-        if(arpos[n3] == 'Z') { 
+        if((arpos[n3] != "X") && (arpos[n3] !="0")) { 
                 let mark3 = document.getElementById('pos'+ n3) 
                 qplay('X')
                 mark3.value = '0';
@@ -354,8 +354,14 @@ function tie(){
     document.getElementById('txt1').innerText = ""
     document.getElementById('txt2').innerText="EMPATOU!!!"
     document.getElementById('txt2').style.fontSize = '50px'
-    document.getElementById("container").style.backgroundColor ="yellow"
+    document.getElementById("container").style.backgroundColor ="gold"
+    tie_img()
     winn = 1
+}
+function tie_img(){
+   
+    document.getElementById("container").style.backgroundImage =  "url('img/emp.png')"
+    
 }
 
 function ng(){
@@ -365,22 +371,3 @@ function ng(){
 
 
 
-/*
-const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-// Altera o tema
-function changeTheme(event) {
-  if( event.matches ) {
-    // O tema é o dark
-  } else {
-    // O tema é o light
-  }
-}
-
-// Escuta a mudança de tema no sistema
-prefersColorScheme.addListener(changeTheme);
-
-// Altera o tema conforme o tema do usuário
-changeTheme(prefersColorScheme);
-
-*/
