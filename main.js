@@ -6,7 +6,23 @@ let arpos = []      // posicional array
 let stpc = 0        // start personal computer
 let st1p = 0        // start 1 player
 let test = 0        // test
+let dark = 0
+const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+let x = document.getElementById("s2").getElementsByClassName("area");
 
+function changeTheme(event) {   // Altera o tema
+    if( event.matches ) {
+    dark = 1                      // O tema é o dark
+    } 
+  }
+
+if(dark == 1){
+    for (let i = 0; i < x.length; i++) {
+        x[i].style.color='black';
+        x[i].style.backgroundColor ='black';
+        x[i].style.border='1px solid white'
+    }
+}
 function stg(){             //start game
     let nplay = document.getElementsByName('n_play')  // nbumber players
     if(winn == 0){
@@ -267,6 +283,7 @@ function win(w, n1, n2, n3){
 function win_img(){
    
      document.getElementById("container").style.backgroundImage =  "url('img/TROFEU.png')"
+     
 }
 
 function movpc(w, n1, n2, n3){
@@ -360,3 +377,26 @@ function tie(){
 function ng(){
     window.location.reload();
 }
+
+
+
+
+/*
+const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+// Altera o tema
+function changeTheme(event) {
+  if( event.matches ) {
+    // O tema é o dark
+  } else {
+    // O tema é o light
+  }
+}
+
+// Escuta a mudança de tema no sistema
+prefersColorScheme.addListener(changeTheme);
+
+// Altera o tema conforme o tema do usuário
+changeTheme(prefersColorScheme);
+
+*/
