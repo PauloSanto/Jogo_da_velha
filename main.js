@@ -8,7 +8,7 @@ let st1p = 0        // start 1 player
 let test = 0        // test
 
 function stg(){             //start game
-    let nplay = document.getElementsByName('n_play')  // nbumber players
+    let nplay = document.getElementsByName('n_play')  // number players
     if(winn == 0){
         if(nplay[0].checked == 1){
             window.alert('You chose 1 player. If you want to change your choose, start new game. You are "X" with color yelow. Good lock.')
@@ -46,7 +46,6 @@ function showConfirmBox() {     //overlay box
       playertwo()
     }
     closeConfirmBox();
-    
 }
 
 function qplay(np){         //notice who play
@@ -161,23 +160,6 @@ function test_pos(){
     
     if (winn == 0){
         if(stpc == 1){
-            //defense
-            if((arpos.slice(1,4).filter (x => x =='X').length == 2)&&(test==0) 
-            ) { test = movpc('0', 1, 2, 3)}
-            if(( arpos.slice(4,7).filter (x => x =='X').length == 2)&&(test==0)  
-            ) { test = movpc('0', 4, 5, 6)}
-            if(( arpos.slice(7,10).filter (x => x =='X').length == 2)&&(test==0) 
-            ){ test = movpc('0', 7, 8, 9)}
-            if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
-            ) { test = movpc('0', 1, 4, 7)}
-            if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2)&&(test==0)  
-            ){ test = movpc('0', 2, 5, 8)}
-            if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2)&&(test==0)  
-            ){ test = movpc('0', 3, 6, 9)}
-            if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)&&(test==0) 
-                ) { test = movpc('0', 1, 5, 9)}
-            if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
-                ) { test = movpc('0', 3, 5, 7)}
 
             // vitory
             if((arpos.slice(1,4).filter (x => x =='0').length == 2)&&(test==0) 
@@ -197,29 +179,30 @@ function test_pos(){
             if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='0').length == 2)&&(test==0) 
                 ) { test = movpc('0', 3, 5, 7)}
 
+            //defense
+            if((arpos.slice(1,4).filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('0', 1, 2, 3)}
+            if(( arpos.slice(4,7).filter (x => x =='X').length == 2)&&(test==0)  
+            ) { test = movpc('0', 4, 5, 6)}
+            if(( arpos.slice(7,10).filter (x => x =='X').length == 2)&&(test==0) 
+            ){ test = movpc('0', 7, 8, 9)}
+            if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('0', 1, 4, 7)}
+            if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('0', 2, 5, 8)}
+            if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('0', 3, 6, 9)}
+            if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('0', 1, 5, 9)}
+            if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('0', 3, 5, 7)}
+
             //neutro
 
             if(test == 0) { playertwo()}    
         }
         if(st1p == 1){
             test = 0
-            //defense
-            if((arpos.slice(1,4).filter (x => x =='X').length == 2)&&(test==0) 
-            ) { test = movpc('X', 1, 2, 3)}
-            if(( arpos.slice(4,7).filter (x => x =='X').length == 2)&&(test==0)  
-            ) { test = movpc('X', 4, 5, 6)}
-            if(( arpos.slice(7,10).filter (x => x =='X').length == 2)&&(test==0) 
-            ){ test = movpc('X', 7, 8, 9)}
-            if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
-            ) { test = movpc('X', 1, 4, 7)}
-            if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2)&&(test==0)  
-            ){ test = movpc('X', 2, 5, 8)}
-            if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2)&&(test==0)  
-            ){ test = movpc('X', 3, 6, 9)}
-            if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)&&(test==0) 
-                ) { test = movpc('X', 1, 5, 9)}
-            if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
-                ) { test = movpc('X', 3, 5, 7)}
 
             //vitory
             if((arpos.slice(1,4).filter (x => x =='0').length == 2)&&(test==0) 
@@ -239,7 +222,25 @@ function test_pos(){
             if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='0').length == 2)&&(test==0) 
                 ) { test = movpc('X', 3, 5, 7)}
 
-            //neutro
+            //defense
+            if((arpos.slice(1,4).filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('X', 1, 2, 3)}
+            if(( arpos.slice(4,7).filter (x => x =='X').length == 2)&&(test==0)  
+            ) { test = movpc('X', 4, 5, 6)}
+            if(( arpos.slice(7,10).filter (x => x =='X').length == 2)&&(test==0) 
+            ){ test = movpc('X', 7, 8, 9)}
+            if(([arpos[1], arpos[4], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+            ) { test = movpc('X', 1, 4, 7)}
+            if(([arpos[2], arpos[5], arpos[8]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('X', 2, 5, 8)}
+            if(([arpos[3], arpos[6], arpos[9]].filter (x => x =='X').length == 2)&&(test==0)  
+            ){ test = movpc('X', 3, 6, 9)}
+            if(([arpos[1], arpos[5], arpos[9]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('X', 1, 5, 9)}
+            if(([arpos[3], arpos[5], arpos[7]].filter (x => x =='X').length == 2)&&(test==0) 
+                ) { test = movpc('X', 3, 5, 7)}
+
+           //neutro
             if(test == 0) {playertwo()}
         }
       
@@ -266,7 +267,7 @@ function win(w, n1, n2, n3){
 }
 function win_img(){
    
-     document.getElementById("container").style.backgroundImage =  "url('img/TROFEU.png')"
+     document.getElementById("theme").style.backgroundImage =  "url('img/TROFEU.png')"
      
 }
 
@@ -354,13 +355,12 @@ function tie(){
     document.getElementById('txt1').innerText = ""
     document.getElementById('txt2').innerText="EMPATOU!!!"
     document.getElementById('txt2').style.fontSize = '50px'
-    document.getElementById("container").style.backgroundColor ="gold"
     tie_img()
     winn = 1
 }
 function tie_img(){
    
-    document.getElementById("container").style.backgroundImage =  "url('img/emp.png')"
+    document.getElementById("theme").style.backgroundImage =  "url('img/emp.png')"
     
 }
 
